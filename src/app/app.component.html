@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Template Forms
+        </div>
+        <div class="panel-body">
+            <form #form="ngForm" novalidate>
+                <div class="form-group" [class.has-error]="firstName.invalid">
+                    <label class="control-label" for="firstname">FirstName</label>
+                    <input class="form-control" type="text" placeholder="FirstName" name="firstName"
+                    id="firstname" [ngModel]="model.firstName" required
+                    (ngModelChange)="firstToUpper($event)" #firstName="ngModel">
+                    <div class="alert alert-danger" *ngIf="firstName.invalid">
+                        FirstName is required
+                    </div>
+                </div>
+                <h3>Classes</h3>
+                <h4>{{firstName.invalid}}</h4>
+                <div class="form-group">
+                    <label for="lastName">LastName</label> 
+                    <input class="form-control" type="text" placeholder="LastName" name="lastName"
+                    id="lastName" [(ngModel)]="model.lastName">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="fullTime" [(ngModel)]="model.fullTime">FullTime
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" value="male" [(ngModel)]="model.gender">Male
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" value="female" [(ngModel)]="model.gender">Female
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Primary Lang</label>
+                    <select class="form-control" name="codeLang" [(ngModel)]="model.codeLang">
+                       <option *ngFor="let lang of languages">
+                           {{lang}}
+                      </option>
+                    </select>
+                </div>
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+        </div>
+        
+    </div>
+    <h3>Model:{{model | json}}</h3>
+    <h3>Angular:{{form.value | json}}</h3>
+    
+</div>
